@@ -17,14 +17,14 @@ int main()
     	string entry1, entry2;
 	cout<< "Enter first string:" << endl;
 	getline(cin, entry1);
-	cout << "Enter second string" << endl;
+	cout << "Enter second string:" << endl;
 	getline(cin, entry2);
 
 	//check to see if the inputs are anagrams
 	if(IsAnagram(entry1, entry2) == 0)
-	    cout << "The strings are not anagrams" << endl;
+	    cout << "The strings are not anagrams." << endl;
 	else
-	    cout << "The strings are anagrams" << endl;
+	    cout << "The strings are anagrams." << endl;
 
     return 0;
 }

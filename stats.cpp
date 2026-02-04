@@ -14,13 +14,29 @@ int main() {
     // to show only 2 places after the decimal point
     cout << fixed << showpoint;
     cout << setprecision(2);
-
-    // MISSING CODE HERE (you can remove these comments)
-	// Get the number of grades to be entered from user
-    // Create a dynamic int array based on this information
-    // Get the user to enter all the grades
-    // Print results while calling the appropriate functions
-
+    int *g = nullptr;
+    int size;
+    cout << "Enter number of grades: ";
+    cin >> size;
+    if(size == 0){
+	cout << "Error!";
+	return 0;
+	}
+    g = new int[size];
+    cout << "Enter grades (each of a new line):" << endl;
+    for(int i = 0; i < size; i++){
+	double num;
+	cin >> num;
+	g[i] += num;
+	}    
+    if(size > 0 ){
+	    cout << "Here are some statistics:" << endl;
+	    cout << "Average: " << average(g , size) << endl;
+	    cout << " Median: " << median(g, size) << endl;
+	    cout << " StdDev: " << stddev(g, size) << endl;
+	}
+    delete []g;
+    g = nullptr;
     return 0;
 }
 
@@ -40,4 +56,55 @@ void bubbleSort(int *array, int size) {
   } // for i
 }
 
+//pre-condition: take in a dynamic int array and its size
+//post-condition: return a value that is the average of all the entries in an array
+double average(int* array, int size){
+	//variable decleration
+        double sum = 0, average;
+
+	//for loop to add all the values of the array together
+        for (int i = 0; i < size; i++)
+                sum += array[i];
+
+	//finding the average of the array
+        average = sum/size;
+        return average;
+}
+
+
+//pre-condition: takes in a dynamic int array and its size
+//post-condition: returns the median of the array
+double median(int* array, int size){
+	//variable decleration
+        double median;
+	bubbleSort(array,size);
+	//conditional statements to see if size is odd or even
+        if (size % 2 == 0)
+                median = array[(size/2) - 1] + double(array[size/2] - array[(size/2) - 1])/2;
+        else
+                median = array[(size/2)];
+        return median;
+}
+
+//pre-condition:takes in a dynamic int array and its size
+//post-condition: returns the standard deviation of the array
+
+double stddev(int* array, int size){
+	// variable decleration
+	double avr = average(array, size);
+	double sum = 0;
+	double stddev = 0;
+	if (size == 1)
+		return stddev;
+	//for loop to add all the values of the array
+	for(int i = 0; i < size; i++)
+		sum += pow((array[i] - avr), 2);
+	
+	//variable decleration to get the divisor
+	double divi = ((double)1/(size-1));
+
+	//finding the standard deviation
+	stddev += pow(((divi)*(sum)),0.5);
+	return stddev;
+}
 // MISSING FUNCTION DEFINITIONS HERE (you can remove these comments)
