@@ -52,7 +52,8 @@ vector<string> split(string target, string delimiter){
 		int d = delimiter.length();
 		int t = target.find(delimiter);
 		temp = target.substr(0,t);
-		result.push_back(temp);
+		if(!temp.empty())
+			result.push_back(temp);
 		target.erase(0, (t+d));
 	}
 	result.push_back(target);
