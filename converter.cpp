@@ -16,16 +16,15 @@ int main ( int argc, char *argv[] ) {
     // Check to see if the command-line arguments are being used correctly
     // Perform the conversion by calling the appropriate function
     // What happens next?!!?
-    cout << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
+    //cout << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
     if (argc != 3){
-	cerr << "Number of arguments incorrect" << endl;
-	return 0;
+	cout << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
+	exit(1);
 	}
     string type = argv[1];
-    string num = argv[3];
+    string num = argv[2];
     if(type == "d2b"){
 	cout <<"The value in binary is: " << dec2bh(num, 'b') << endl;
-	return 0;
 	}
     else if (type == "d2h"){
 	cout << "The value in hexadecimal is: " << dec2bh(num, 'h') << endl;
@@ -34,14 +33,15 @@ int main ( int argc, char *argv[] ) {
     else if (type == "b2d"){
 	if(bin2d(num) != -1){
 		cout << "The value in decimal is: " << bin2d(num) << endl;
-		return 0;
 		}
 	else{
 		cerr << "Binary value contains non-binary digits." << endl;
+		exit(1);
 		}
 	}
     else{
-	cerr << "Conversion option not picked" << endl;
+	cerr << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
+	exit(1);
 	}
     return 0;
 }

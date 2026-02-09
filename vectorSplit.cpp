@@ -14,22 +14,20 @@ int main() {
     cout << "Enter string to split:" << endl;
     getline(cin, line1);
     if (line1.length() == 0){
-	cout << "Error!";
 	return 0;
     }
     cout << "Enter delimiter string:" << endl;
     getline(cin, line2);
     if (line2.length() == 0){
-	cout <<"Error!";
 	return 0;
     }
     cout << "The substrings are:";
-    split(line1,line2);
-    for(int i = 0; i < split(line1,line2).size(); i++){
-	if (i < split(line1, line2).size() - 1)
-		cout <<"\"" << split(line1,line2)[i] <<"\", ";
+    vector<string> result = split(line1,line2);
+    for(int i = 0; i < result.size(); i++){
+	if (i < result.size() - 1)
+		cout <<"\"" << result[i] <<"\", ";
 	else
-		cout <<"\"" << split(line1,line2)[i] << "\""<< endl;
+		cout <<"\"" << resultd[i] << "\""<< endl;
        }
     return 0;
 }
