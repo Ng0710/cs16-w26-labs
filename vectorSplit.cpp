@@ -10,24 +10,22 @@ using namespace std;
 vector<string> split(string target, string delimiter);
 
 int main() {
-    string line1, line2;
+    string target, delimiter;
     cout << "Enter string to split:" << endl;
-    getline(cin, line1);
-    if (line1.length() == 0){
-	return 0;
-    }
+    getline(cin, target);
     cout << "Enter delimiter string:" << endl;
-    getline(cin, line2);
-    if (line2.length() == 0){
+    getline(cin, delimiter);
+    if (target.length() == 0 || target == delimiter){
+	cout << "No substrings." << endl;
 	return 0;
     }
-    cout << "The substrings are:";
-    vector<string> result = split(line1,line2);
+    cout << "The substrings are: ";
+    vector<string> result = split(target, delimiter);
     for(int i = 0; i < result.size(); i++){
 	if (i < result.size() - 1)
 		cout <<"\"" << result[i] <<"\", ";
 	else
-		cout <<"\"" << resultd[i] << "\""<< endl;
+		cout <<"\"" << result[i] << "\""<< endl;
        }
     return 0;
 }

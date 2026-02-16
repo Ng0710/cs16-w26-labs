@@ -16,7 +16,7 @@ int main ( int argc, char *argv[] ) {
     // Check to see if the command-line arguments are being used correctly
     // Perform the conversion by calling the appropriate function
     // What happens next?!!?
-    //cout << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
+    
     if (argc != 3){
 	cout << "Usage: converter <options: d2b, d2h, b2d> <value>" << endl;
 	exit(1);
@@ -28,14 +28,13 @@ int main ( int argc, char *argv[] ) {
 	}
     else if (type == "d2h"){
 	cout << "The value in hexadecimal is: " << dec2bh(num, 'h') << endl;
-	return 0;
 	}
     else if (type == "b2d"){
 	if(bin2d(num) != -1){
 		cout << "The value in decimal is: " << bin2d(num) << endl;
 		}
 	else{
-		cerr << "Binary value contains non-binary digits." << endl;
+		cout << "Binary value contains non-binary digits." << endl;
 		exit(1);
 		}
 	}
@@ -59,7 +58,7 @@ int bin2d(string binstring){
 	
 	//check if the number is binary
 	for(int i = 0; i < binstring.length(); i++){
-		if (binstring[i] != '1' || binstring[i] != '0')
+		if (binstring[i] != '1' && binstring[i] != '0')
 			return -1;
 		}
 	// for loop to convert
@@ -80,6 +79,10 @@ string dec2bh(string sdec, char bh){
     num = stoi(sdec);
     // converting to binary
     if(bh == 'b'){
+	if(num == 0){
+		result = "0";
+		return result;
+	}
         while(num != 0){
             rem = num % 2;
             if(rem == 1)
